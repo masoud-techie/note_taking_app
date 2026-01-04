@@ -1,0 +1,23 @@
+<!-- app/views/notes/index.html.erb -->
+<h1>My Notes</h1>
+
+<%= link_to "New Note", new_note_path %> |
+<%= button_to "Logout", destroy_user_session_path, method: :delete %>
+
+<hr>
+
+<% @notes.each do |note| %>
+  <h3>
+    <%= link_to note.title, note %>
+    <% if note.favorite %> ⭐ <% end %>
+  </h3>
+  <p><%= note.description %></p>
+  <small>
+    Created: <%= note.created_at.strftime("%Y-%m-%d") %>,
+    Updated: <%= note.updated_at.strftime("%Y-%m-%d") %>
+  </small>
+  <br>
+  <%= link_to "Edit", edit_note_path(note) %> |
+  <%= link_to "Delete", note, method: :delete, data: { confirm: "Are you sure?" } %>
+  <hr>
+<% end %>

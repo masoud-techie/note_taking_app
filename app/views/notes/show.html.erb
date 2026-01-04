@@ -1,0 +1,15 @@
+<h1><%= @note.title %></h1>
+
+<p><%= @note.description %></p>
+
+<p>
+  Favorite: <%= @note.favorite ? "Yes ⭐" : "No" %>
+</p>
+
+<p>
+  Created at: <%= @note.created_at %><br>
+  Updated at: <%= @note.updated_at %>
+</p>
+
+<%= link_to "Edit", edit_note_path(@note) %> |
+<%= link_to "Back", notes_path %>
