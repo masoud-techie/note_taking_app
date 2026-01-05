@@ -1,21 +1,27 @@
-<h3><%= @note.title %><%= @note.favorite ? " ⭐" : "" %></h3>
-<div class="">
-<p><%= @note.description %></p>
-
-
-<div class="">
-  <small class="text-muted">
-    <% if @note.updated_at > @note.created_at %>
-      Updated: <%= @note.updated_at.strftime("%b %d, %Y") %>
-    <% else %>
-      Created: <%= @note.created_at.strftime("%b %d, %Y") %>
-    <% end %>
-  </small>
-  <br/>
-  <%= link_to edit_note_path(@note), class: "text-primary fs-6" do %>
-    Edit <i class="bi bi-pencil"></i>
-  <% end %>
-   |
-  <%= link_to "Back", notes_path %>
+<div class="mb-3">
+  <%= link_to "All Notes", notes_path, class: "btn btn-secondary me-2" %>
 </div>
+
+<h3><%= @note.title %><%= @note.favorite ? " ⭐" : "" %></h3>
+
+<p><%= @note.description %></p>
+<small class="text-muted">
+  <% if @note.updated_at > @note.created_at %>
+    Updated: <%= @note.updated_at.strftime("%b %d, %Y") %>
+  <% else %>
+    Created: <%= @note.created_at.strftime("%b %d, %Y") %>
+  <% end %>
+</small>
+<br/>
+
+<div class="d-flex gap-3">
+  <%= link_to edit_note_path(@note), class: "text-primary fs-5" do %>
+    <i class="bi bi-pencil"></i>
+  <% end %>
+  <%= button_to note_path(@note),
+                method: :delete,
+                data: { confirm: "Delete this note?" },
+                class: "btn btn-link text-danger fs-5 p-0" do %>
+    <i class="bi bi-trash"></i>
+  <% end %>
 </div>
