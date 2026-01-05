@@ -1,8 +1,19 @@
 <div class="mb-3">
-  <%= link_to "All Notes", notes_path, class: "btn btn-secondary me-2" %>
+  <%= link_to "All Notes", notes_path, class: "btn btn-secondary btn-sm me-2" %>
 </div>
 
 <h3><%= @note.title %><%= @note.favorite ? " ⭐" : "" %></h3>
+<% if @note.user == current_user %>
+  <hr>
+
+  <% if @note.shared_users.any? %>
+    <small class="text-muted">
+      Shared with:
+      <%= @note.shared_users.pluck(:email).join(", ") %>
+    </small>
+  <% end %>
+<% end %>
+
 
 <p><%= @note.description %></p>
 <small class="text-muted">
@@ -25,3 +36,5 @@
     <i class="bi bi-trash"></i>
   <% end %>
 </div>
+
+

@@ -1,55 +1,58 @@
-<h2 class="mb-4">My Notes</h2>
-
-<div class="mb-3">
-  <%= link_to "New Note", new_note_path, class: "btn btn-primary me-2" %>
-  <% if user_signed_in? && current_user.notes.exists? %>
-    <%= link_to "Show Favorites", favorites_notes_path,
-                class: "btn btn-warning me-2" %>
-  <% end %>
-
-</div>
 
 <% if @notes.present? && @notes.any? %>
+  <br/>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <% @notes.each do |note| %>
       <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= link_to note.title, note, class: "text-dark text-decoration-none"%>
-              <% if note.favorite %> <span class="text-warning">⭐</span>
+        <div class="card shadow-lg border-0">
+          <div class="card-body ">
+            <div class="d-flex justify-content-between">
+              <h5 class="fw-bold mb-1"><%= link_to note.title, note, class: "text-dark text-decoration-none" %></h5>
+              <% if note.favorite %><i class="bi bi-star-fill text-saffron"></i>
+              <% else %> <i class="bi bi-star text-saffron"></i>
               <% end %>
-            </h5>
-            <p class="card-text"><%= note.description %></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">
-              <% if note.updated_at > note.created_at %>
-                Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
-              <% else %>
-                Created: <%= note.created_at.strftime("%b %d, %Y") %>
-              <% end %>
-            </small>
-
-            <br>
-            <div class="d-flex gap-3">
-              <%= link_to edit_note_path(note), class: "text-primary fs-5" do %>
-                <i class="bi bi-pencil"></i>
-              <% end %>
-
-              <%= button_to note_path(note),
-                            method: :delete,
-                            data: { confirm: "Delete this note?" },
-                            class: "btn btn-link text-danger fs-5 p-0" do %>
-                <i class="bi bi-trash"></i>
+            </div>
+            <p class="card-text text-muted small "><%= note.description %></p>
+            <div style="padding-bottom: 8px">
+              <% if note.user != current_user %>
+                <span class="badge bg-green">Shared by <%= note.user.email %></span>
               <% end %>
             </div>
           </div>
-
+          <div class="card-footer">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <small class="text-muted">
+                  <% if note.updated_at > note.created_at %>
+                    Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
+                  <% else %>
+                    Created: <%= note.created_at.strftime("%b %d, %Y") %>
+                  <% end %>
+                </small>
+              </div>
+              <div class="d-flex gap-3">
+                <%= link_to edit_note_path(note), class: "text-primary fs-5 text-dark text-decoration-none" do %>
+                  <i class="bi bi-pencil"></i>
+                <% end %>
+                <%#= link_to edit_note_path(note), class: "text-primary fs-5" do %>
+<!--                  <i class="bi bi-share text-dark text-decoration-none"></i>-->
+                <%# end %>
+                <%= button_to note_path(note),
+                              method: :delete,
+                              data: { confirm: "Delete this note?" },
+                              class: "btn btn-link text-danger fs-5 p-0 " do %>
+                  <i class="bi bi-trash"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     <% end %>
   </div>
 <% else %>
   <p>No notes yet.</p>
 <% end %>
+
+

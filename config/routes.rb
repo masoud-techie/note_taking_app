@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "note_shares/create"
+  get "note_shares/destroy"
   get "pages/home"
   # Devise authentication
   devise_for :users
@@ -12,5 +14,9 @@ Rails.application.routes.draw do
     collection do
       get :favorites
     end
+
+    resources :note_shares, only: :create
   end
+
+  resources :note_shares, only: :destroy
 end

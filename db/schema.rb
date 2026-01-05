@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_04_030616) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_05_172059) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "note_shares", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "note_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["note_id"], name: "index_note_shares_on_note_id"
+    t.index ["user_id"], name: "index_note_shares_on_user_id"
+  end
 
   create_table "notes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -36,5 +45,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_04_030616) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "note_shares", "notes"
+  add_foreign_key "note_shares", "users"
   add_foreign_key "notes", "users"
 end

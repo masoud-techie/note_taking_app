@@ -5,9 +5,21 @@ class NotesController < ApplicationController
   # Only run set_note for actions that need an ID
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
+  before_action :authorize_owner!, only: [:edit, :update, :destroy]
+
+  def authorize_owner!
+    redirect_to notes_path, alert: "Not authorized." unless @note.user == current_user
+  end
+
+
   # List all notes for current user
   def index
-    @notes = current_user.notes
+    owned_ids  = current_user.notes.select(:id)
+    shared_ids = current_user.shared_notes.select(:id)
+
+    @notes = Note.where(id: owned_ids)
+                 .or(Note.where(id: shared_ids))
+                 .order(updated_at: :desc)
   end
 
   # Show favorite notes only
@@ -58,7 +70,8 @@ class NotesController < ApplicationController
 
   # Only allow the current user's note
   def set_note
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.notes.find_by(id: params[:id]) ||
+            current_user.shared_notes.find(params[:id])
   end
 
   # Strong params

@@ -7,10 +7,23 @@
     <% end %>
     <% if user_signed_in? %>
       <div>
-        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+        <div class="d-flex m-2">
+          <div>
+            <%= link_to "New Note", new_note_path, class: "btn btn-primary me-2 btn-sm" %>
+          </div>
+          <div>
+            <% if user_signed_in? && current_user.notes.exists? %>
+              <%= link_to "Show Favorites", favorites_notes_path,
+                          class: "btn btn-warning me-2 btn-sm" %>
+            <% end %>
+          </div>
+          <div>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+          </div>
+        </div>
       </div>
     <% else %>
-      <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light btn-sm" %>
+      <%= link_to "Sign In", new_user_session_path, class: "btn btn-light btn-sm" %>
     <% end %>
   </div>
 </header>
