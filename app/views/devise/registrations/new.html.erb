@@ -8,9 +8,9 @@
       <div class="mb-3">
         <%= f.label :email, class: "form-label" %>
         <%= f.email_field :email,
-              class: "form-control",
-              autofocus: true,
-              autocomplete: "email" %>
+                          class: "form-control",
+                          autofocus: true,
+                          autocomplete: "email" %>
       </div>
 
       <div class="mb-3">
@@ -21,15 +21,15 @@
           </small>
         <% end %>
         <%= f.password_field :password,
-              class: "form-control",
-              autocomplete: "new-password" %>
+                             class: "form-control",
+                             autocomplete: "new-password" %>
       </div>
 
       <div class="mb-3">
         <%= f.label :password_confirmation, class: "form-label" %>
         <%= f.password_field :password_confirmation,
-              class: "form-control",
-              autocomplete: "new-password" %>
+                             class: "form-control",
+                             autocomplete: "new-password" %>
       </div>
 
       <div class="d-grid">
@@ -38,7 +38,7 @@
 
     <% end %>
 
-    <div class="text-center mt-3">
+    <div class="text-center mt-3"> Already have an account?
       <%= render "devise/shared/links" %>
     </div>
   </div>

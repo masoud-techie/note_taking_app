@@ -27,3 +27,7 @@
 #favorite-checkbox:checked + .favorite-star .star-outline {
     display: none;
 }
+
+.bi-journals {
+    color: #e0e0e0; !important;
+}

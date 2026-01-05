@@ -7,16 +7,16 @@
       <div class="mb-3">
         <%= f.label :email, class: "form-label" %>
         <%= f.email_field :email,
-              class: "form-control",
-              autofocus: true,
-              autocomplete: "email" %>
+                          class: "form-control",
+                          autofocus: true,
+                          autocomplete: "email" %>
       </div>
 
       <div class="mb-3">
         <%= f.label :password, class: "form-label" %>
         <%= f.password_field :password,
-              class: "form-control",
-              autocomplete: "current-password" %>
+                             class: "form-control",
+                             autocomplete: "current-password" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
@@ -33,6 +33,7 @@
     <% end %>
 
     <div class="text-center mt-3">
+      Don't have an account?
       <%= render "devise/shared/links" %>
     </div>
   </div>
