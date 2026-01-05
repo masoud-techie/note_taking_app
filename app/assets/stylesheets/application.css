@@ -9,3 +9,21 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+.favorite-star {
+    cursor: pointer;
+    position: relative;
+}
+
+/* Default */
+.star-filled {
+    display: none;
+}
+
+/* Checked → filled star */
+#favorite-checkbox:checked + .favorite-star .star-filled {
+    display: inline;
+}
+
+#favorite-checkbox:checked + .favorite-star .star-outline {
+    display: none;
+}

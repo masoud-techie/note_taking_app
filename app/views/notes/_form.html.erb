@@ -9,11 +9,18 @@
     <%= f.text_area :description, class: "form-control", rows: 5 %>
   </div>
 
-  <div class="form-check mb-3">
-    <%= f.check_box :favorite, class: "form-check-input" %>
-    <%= f.label :favorite, class: "form-check-label" %>
+  <div class="mb-3">
+    <%= f.check_box :favorite, id: "favorite-checkbox", class: "d-none" %>
+
+    <label for="favorite-checkbox" class="favorite-star">
+      <!-- Outline star -->
+      <i class="bi bi-star star-outline fs-3"></i>
+
+      <!-- Filled star -->
+      <i class="bi bi-star-fill star-filled fs-3 text-warning"></i>
+    </label>
   </div>
 
   <%= f.submit class: "btn btn-success" %>
-  <%= link_to "Back", notes_path, class: "btn btn-secondary ms-2" %>
+  <%= link_to "Cancel", notes_path, class: "btn btn-secondary ms-2" %>
 <% end %>

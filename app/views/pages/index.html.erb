@@ -4,7 +4,6 @@
 
   <% if user_signed_in? %>
     <%= link_to "Go to My Notes", notes_path, class: "btn btn-primary btn-lg me-2" %>
-    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-lg" %>
   <% else %>
     <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-lg me-2" %>
   <% end %>

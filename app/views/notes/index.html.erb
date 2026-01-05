@@ -3,9 +3,10 @@
 <div class="mb-3">
   <%= link_to "New Note", new_note_path, class: "btn btn-primary me-2" %>
   <% if user_signed_in? && current_user.notes.exists? %>
-  <%= link_to "Favorites ⭐", favorites_notes_path,
-      class: "btn btn-outline-warning btn-sm me-2" %>
+    <%= link_to "Favorites", favorites_notes_path,
+                class: "btn btn-warning me-2" %>
   <% end %>
+
 </div>
 
 <% if @notes.present? && @notes.any? %>
@@ -16,23 +17,35 @@
           <div class="card-body">
             <h5 class="card-title">
               <%= link_to note.title, note %>
-              <% if note.favorite %> <span class="text-warning">⭐</span> <% end %>
+              <% if note.favorite %> <span class="text-warning">⭐</span>
+              <% end %>
             </h5>
             <p class="card-text"><%= note.description %></p>
           </div>
           <div class="card-footer">
             <small class="text-muted">
-            <% if note.updated_at > note.created_at %>
-              Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
-            <% else %>
-              Created: <%= note.created_at.strftime("%b %d, %Y") %>
-            <% end %>
+              <% if note.updated_at > note.created_at %>
+                Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
+              <% else %>
+                Created: <%= note.created_at.strftime("%b %d, %Y") %>
+              <% end %>
             </small>
 
             <br>
-            <%= link_to "Edit", edit_note_path(note), class: "btn btn-sm btn-outline-primary me-1 mt-1" %>
-            <%= link_to "Delete", note, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger mt-1" %>
+            <div class="d-flex gap-3">
+              <%= link_to edit_note_path(note), class: "text-primary fs-5" do %>
+                <i class="bi bi-pencil"></i>
+              <% end %>
+
+              <%= button_to note_path(note),
+                            method: :delete,
+                            data: { confirm: "Delete this note?" },
+                            class: "btn btn-link text-danger fs-5 p-0" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </div>
           </div>
+
         </div>
       </div>
     <% end %>
