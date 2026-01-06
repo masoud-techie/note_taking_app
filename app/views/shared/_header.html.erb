@@ -24,6 +24,9 @@
           <div>
             <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
           </div>
+<!--          <span class="navbar-text text-light">-->
+<!--            Hello, <%#= current_user.name.presence || current_user.email %>-->
+<!--          </span>-->
         </div>
       </div>
     <% else %>

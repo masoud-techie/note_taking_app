@@ -8,4 +8,15 @@ class User < ApplicationRecord
 
   has_many :note_shares, dependent: :destroy
   has_many :shared_notes, through: :note_shares, source: :note
+
+  # app/models/user.rb
+  validates :name, presence: true
+
+  before_save :capitalize_name
+
+  def capitalize_name
+    self.name = name.titleize if name.present?
+  end
+
+
 end
