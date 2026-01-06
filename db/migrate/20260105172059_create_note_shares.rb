@@ -1,4 +1,4 @@
-class CreateNoteShares < ActiveRecord::Migration[8.1]
+class CreateNoteShares < ActiveRecord::Migration[7.1]
   def change
     create_table :note_shares do |t|
       t.references :note, null: false, foreign_key: true
@@ -6,5 +6,8 @@ class CreateNoteShares < ActiveRecord::Migration[8.1]
 
       t.timestamps
     end
+
+    remove_index :note_shares, column: [:note_id, :user_id], if_exists: true
+
   end
 end
