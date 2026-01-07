@@ -2,6 +2,8 @@
 
 <%= render partial: "notes/notes_grid",
            locals: { notes: @notes, empty_message: "" } %>
-<div class="mx-2">
-  <%= link_to "Take a note ...", new_note_path, class: "btn btn-primary btn-sm" %>
-</div>
+<% if @notes.blank? %>
+  <div class="mx-2">
+    <%= link_to "Take a note ...", new_note_path, class: "btn btn-primary btn-sm" %>
+  </div>
+<% end %>
