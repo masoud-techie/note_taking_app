@@ -22,4 +22,6 @@ class User < ApplicationRecord
     "#{name} #{last_name}"
   end
 
+  alias_attribute :name, :first_name
+
 end
