@@ -85,4 +85,8 @@
     background-color: var(--teal); !important;
 }
 
+.bi-share {
+    color: #2A9D8F; !important;
+    cursor: pointer;
+}
 
