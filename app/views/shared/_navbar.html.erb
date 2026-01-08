@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+  <div class="container-fluid">
+    <!-- Logo + Brand -->
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "kee-notes-logo.png",
+                    alt: "KeeNotes",
+                    class: "navbar-logo me-2" %>
+      <span class="fw-bold">
+        Kee<span class="text-teal">Notes</span>
+      </span>
+    <% end %>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+      <ul class="navbar-nav align-items-lg-center gap-lg-3">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Notes", notes_path, class: "nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Favorites", favorites_notes_path, class: "nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= button_to "Logout",
+                          destroy_user_session_path,
+                          method: :delete,
+                          class: "nav-link btn btn-link p-0" %>
+
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+
+
+
+
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,16 +1,135 @@
-<div class="d-flex flex-column justify-content-center align-items-center text-center landing" style="">
-  <h1 class="display-4 mb-4">Welcome to KeeNotes</h1>
-  <p class="lead mb-4">Take notes, mark favorites, and keep your ideas organized — all in one place!</p>
+<!-- HERO SECTION -->
+<div class="bg-cover" style="background-image: url('<%= asset_path("hero-notes.webp") %>'); height: 400px;">
+  <div class="container text-white py-5">
+    <div class="container container-600 mx-2 text-white">
+      <h1 class="display-5 fw-bold">Organize Your Thoughts with <span class="text-teal">Kee-Notes</span></h1>
+      <p class="lead text-white mt-3">
+        A simple, secure place to write, organize, and access your notes anytime.
+      </p>
 
-  <% if user_signed_in? %>
-    <%= link_to "Go to My Notes", notes_path, class: "btn btn-primary btn-lg me-2" %>
-  <% else %>
-    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-lg me-2" %>
-  <% end %>
-
-  <% unless user_signed_in? %>
-    <div class="pt-3">
-      Already have an account? <%= link_to "Sign In", new_user_session_path, class: "text-decoration-none"%>
+      <div class="mt-4">
+        <% if user_signed_in? %>
+          <%= link_to "Go to My Notes", notes_path, class: "btn btn-primary btn-lg me-2" %>
+        <% else %>
+          <%= link_to "Get Started", new_user_registration_path, class: "btn btn-teal btn-lg me-2" %>
+          <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-secondary btn-lg" %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
+
+
+<section class="py-5 text-center p-3 bg-light">
+  <div class="container">
+    <div class="row text-center mb-4">
+      <h2 class="fw-bold">Why Kee-Notes?</h2>
+      <p class="text-muted">Everything you need to stay organized</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card note-card  h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">📝 Easy Notes Creation</h5>
+            <p class="card-text">
+              Create and edit notes with a clean, distraction-free interface.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card note-card  h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">🔒 Secure & Private</h5>
+            <p class="card-text">
+              Your notes are protected with secure authentication.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card note-card  h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">☁️ Cloud Sync</h5>
+            <p class="card-text">
+              Access your notes from any device, anytime.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-5">
+  <div class="container">
+    <div class="row text-center mb-4">
+      <h2 class="fw-bold">How It Works</h2>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-4">
+        <h5>Sign Up</h5>
+        <p>Create your free account in seconds.</p>
+      </div>
+
+      <div class="col-md-4">
+        <h5>Write Notes</h5>
+        <p>Add, edit, and organize your notes easily.</p>
+      </div>
+
+      <div class="col-md-4">
+        <h5>Stay Organized</h5>
+        <p>Access your notes whenever you need them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-5 text-center">
+  <h1 class="display-5 fw-bold">Get Started with <span class="text-teal"> KeeNotes</span>Today</h1>
+  <p class="lead text-muted mt-1">
+    Sing up now and start organizing your notes effortlessly.
+  </p>
+
+  <div class="mt-4">
+    <%= link_to "Get Started", new_user_registration_path, class: "btn btn-teal btn-lg me-2" %>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="d-flex flex-column justify-content-center align-items-center text-center landing" style="">-->
+<!--  <h1 class="display-4 mb-4">Welcome to KeeNotes</h1>-->
+<!--  <p class="lead mb-4">Take notes, mark favorites, and keep your ideas organized — all in one place!</p>-->
+
+  <%# if user_signed_in? %>
+    <%#= link_to "Go to My Notes", notes_path, class: "btn btn-primary btn-lg me-2" %>
+  <%# else %>
+    <%#= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-lg me-2" %>
+  <%# end %>
+
+  <%# unless user_signed_in? %>
+<!--    <div class="pt-3">-->
+<!--      Already have an account? <%#= link_to "Sign In", new_user_session_path, class: "text-decoration-none"%>-->
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->

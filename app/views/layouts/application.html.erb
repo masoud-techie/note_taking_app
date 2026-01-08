@@ -30,9 +30,10 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-<%= render "shared/header" %>
+<%#= render "shared/header" %>
+<%= render "shared/navbar" %>
 <main class="flex-fill notes-body">
-  <div class="container">
+  <div class=" p-0">
     <%= yield %>
   </div>
 </main>

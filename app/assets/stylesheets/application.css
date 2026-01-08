@@ -1,13 +1,13 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+/* Custom Palette Variables */
+:root {
+    --charcoal: #2E2F47;
+    --teal: #47D9CE;
+    --saffron: #E9C46A;
+    --sandy-orange: #F4A261;
+    --sienna-red: #E76F51;
+    --off-white: #f5f5f5;
+    --bg-green: #5F9598;
+}
 
 .favorite-star {
     cursor: pointer;
@@ -42,18 +42,8 @@
     }
 }
 
-/* Custom Palette Variables */
-:root {
-    --charcoal: #264653;
-    --teal: #2A9D8F;
-    --saffron: #E9C46A;
-    --sandy-orange: #F4A261;
-    --sienna-red: #E76F51;
-    --off-white: #f5f5f5;
-    --bg-green: #5F9598;
-}
 
-.navbar { background-color: var(--charcoal) !important; }
+.navbar, .footer { background-color: var(--charcoal) !important; }
 
 .btn-primary {
     background-color: var(--teal);
@@ -81,10 +71,6 @@
     background-color: var(--bg-green);
 }
 
-.btn-teal {
-    background-color: var(--teal); !important;
-}
-
 .bi-share {
     color: #2A9D8F; !important;
     cursor: pointer;
@@ -94,4 +80,62 @@
     content:" *";
     color: red;
 }
+
+/*Navbar styles*/
+/* Logo */
+.navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Teal brand color */
+.text-teal {
+    color: #47D9CE !important;
+}
+
+/* Teal button */
+.btn.btn-teal {
+    background-color: var(--teal); !important;
+    border-color: #20c997;
+    color: #0e0e0e;
+}
+
+.btn.btn-teal:hover {
+    background-color:#31E7AE;
+    color: #0e0e0e;
+}
+
+/* Nav link hover */
+.navbar-dark .nav-link {
+    color: #f8f9fa;
+}
+
+.navbar-dark .nav-link:hover {
+    color: #20c997;
+}
+
+/* app/assets/stylesheets/application.css or .scss */
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-bg-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container-600 {
+    max-width: 600px !important;
+    margin-left: 0; !important;
+}
+
+.btn.btn-outline-secondary:hover {
+    background-color: var(--teal); !important;
+    color: #fff;
+}
+
+
 
