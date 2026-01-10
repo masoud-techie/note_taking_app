@@ -2,7 +2,7 @@
 <div class="bg-cover" style="background-image: url('<%= asset_path("hero-notes.webp") %>'); height: 400px;">
   <div class="container text-white py-5">
     <div class="container container-600 mx-2 text-white">
-      <h1 class="display-5 fw-bold">Organize Your Thoughts with <span class="text-teal">Kee-Notes</span></h1>
+      <h1 class="display-5 fw-bold">Organize Your Thoughts with <span class="text-teal">KeeNotes</span></h1>
       <p class="lead text-white mt-3">
         A simple, secure place to write, organize, and access your notes anytime.
       </p>
@@ -12,7 +12,7 @@
           <%= link_to "Go to My Notes", notes_path, class: "btn btn-teal btn-lg me-2" %>
         <% else %>
           <%= link_to "Get Started", new_user_registration_path, class: "btn btn-teal btn-lg me-2" %>
-          <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-secondary btn-lg" %>
+          <%= link_to "Log In", new_user_session_path, class: "btn text-white btn-outline-secondary btn-lg" %>
         <% end %>
       </div>
     </div>

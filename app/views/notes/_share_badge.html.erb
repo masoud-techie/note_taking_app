@@ -1,0 +1,17 @@
+<% if note.shared_users.any? %>
+  <% if note.user != current_user %>
+    <div class="pb-2">
+                <span class="badge bg-body-secondary">
+                  Shared by <%= note.user.email %>
+                </span>
+    </div>
+  <% else %>
+
+    <div class="pb-2">
+      <small class="badge bg-body-secondary text-secondary">
+        Shared with:
+        <%= note.shared_users.pluck(:email).join(", ") %>
+      </small>
+    </div>
+  <% end %>
+<% end %>

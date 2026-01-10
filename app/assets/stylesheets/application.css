@@ -90,7 +90,7 @@
 
 /* Teal brand color */
 .text-teal {
-    color: #47D9CE !important;
+    color: var(--teal) !important;
 }
 
 /* Teal button */
@@ -111,7 +111,7 @@
 }
 
 .navbar-dark .nav-link:hover {
-    color: #20c997;
+    color: var(--teal);
 }
 
 /* app/assets/stylesheets/application.css or .scss */
@@ -152,6 +152,12 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+.card:hover .favorite-btn {
+    opacity: 1;
+}
+.favorite-btn {
+    opacity: 0.4;
+}
 
 
 

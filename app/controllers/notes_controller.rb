@@ -3,7 +3,7 @@ class NotesController < ApplicationController
   before_action :authenticate_user!
 
   # Only run set_note for actions that need an ID
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :toggle_favorite]
 
   before_action :authorize_owner!, only: [:edit, :update, :destroy]
 
@@ -69,6 +69,19 @@ class NotesController < ApplicationController
     redirect_to notes_path, notice: "Note deleted."
   end
 
+
+  def note_params
+    params.require(:note).permit(:title, :description, :favorite)
+  end
+
+  def toggle_favorite
+    @note = current_user.notes.find(params[:id])
+    @note.update(favorite: !@note.favorite)
+
+    redirect_back fallback_location: notes_path
+  end
+
+
   private
 
   # Only allow the current user's note
@@ -78,7 +91,6 @@ class NotesController < ApplicationController
   end
 
   # Strong params
-  def note_params
-    params.require(:note).permit(:title, :description, :favorite)
-  end
+
+
 end

@@ -1,0 +1,11 @@
+<%= button_to toggle_favorite_note_path(note),
+              method: :patch,
+              class: "btn btn-link p-0 text-warning",
+              title: note.favorite ? "Unfavorite" : "Favorite" do %>
+  <% if note.favorite %>
+    <i class="bi bi-bookmark-fill text-saffron"></i>
+  <% else %>
+    <i class="bi bi-bookmark text-saffron"></i>
+  <% end %>
+<% end %>
+

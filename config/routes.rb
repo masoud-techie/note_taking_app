@@ -15,8 +15,14 @@ Rails.application.routes.draw do
       get :favorites
     end
 
+    member do
+      patch :toggle_favorite
+    end
+
     resources :note_shares, only: :create
   end
 
   resources :note_shares, only: :destroy
+
+
 end

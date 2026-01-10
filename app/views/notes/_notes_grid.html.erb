@@ -1,45 +1,25 @@
 <% if notes.present? && notes.any? %>
   <div class="notes-masonry gap-3">
     <% notes.each do |note| %>
-<!--      Note content-->
+      <!--      Note content-->
       <div class="note-card">
         <!--      Shared Notes Badge-->
-        <% if note.shared_users.any? %>
-          <% if note.user != current_user %>
-            <div class="pb-2">
-                <span class="badge bg-green">
-                  Shared by <%= note.user.email %>
-                </span>
-            </div>
-          <% else %>
-
-           <div class="pb-2">
-             <small class="badge bg-green">
-               Shared with:
-               <%= note.shared_users.pluck(:email).join(", ") %>
-             </small>
-           </div>
-          <% end %>
-        <% end %>
-
-
-
-
 
 
         <div class="d-flex justify-content-between">
-          <h5 class="fw-bold mb-1">
-            <%= link_to note.title, note, class: "text-dark text-decoration-none" %>
-          </h5>
+          <h6 class="card-title mb-1">
+            <%= link_to note.title,
+                        note_path(note),
+                        class: "text-decoration-none text-dark" %>
+          </h6>
 
-          <% if note.favorite %>
-            <i class="bi bi-star-fill text-saffron"></i>
-          <% else %>
-            <i class="bi bi-star text-saffron"></i>
-          <% end %>
+          <%= render "notes/favorite_button", note: note %>
         </div>
+        <!--        <p class="text-muted small mt-2">-->
+        <%#= truncate(note.description, length: 100) %>
+        <!--        </p>-->
         <p class="card-text text-muted small"><%= note.description %></p>
-
+        <%= render 'share_badge', note: note %>
         <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -59,17 +39,14 @@
           </div>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <small class="text-muted">
-              <% if note.updated_at > note.created_at %>
-                Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
-              <% else %>
-                Created on: <%= note.created_at.strftime("%b %d, %Y") %>
-              <% end %>
-            </small>
-          </div>
-
+        <div class="card-footer bg-transparent border-0 text-muted small d-flex justify-content-between align-items-center">
+          <small class="text-muted">
+            <% if note.updated_at > note.created_at %>
+              Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
+            <% else %>
+              Created on: <%= note.created_at.strftime("%b %d, %Y") %>
+            <% end %>
+          </small>
           <div class="d-flex gap-3 pt-3">
             <%= link_to edit_note_path(note),
                         class: " text-dark text-decoration-none" do %>
