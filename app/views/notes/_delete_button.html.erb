@@ -1,0 +1,14 @@
+<% if note.user == current_user %>
+  <%= button_to note_path(note),
+                method: :delete,
+                class: "btn btn-link text-muted p-0" do %>
+    <i class="bi bi-trash"></i>
+  <% end %>
+<% else %>
+  <%= button_to note_share_path(note),
+                method: :delete,
+                data: { turbo_confirm: "Remove this note from your notes?" },
+                class: "btn btn-link text-muted p-0" do %>
+    <i class="bi bi-trash"></i>
+  <% end %>
+<% end %>

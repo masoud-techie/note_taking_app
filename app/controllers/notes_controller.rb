@@ -3,16 +3,14 @@ class NotesController < ApplicationController
   before_action :authenticate_user!
 
   # Only run set_note for actions that need an ID
-  before_action :set_note, only: [:show, :edit, :update, :destroy, :toggle_favorite]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :toggle_favorite, :archive, :unarchive]
 
   before_action :authorize_owner!, only: [:edit, :update, :destroy]
-  before_action :set_note, only: [:archive, :unarchive]
+
   def authorize_owner!
     redirect_to notes_path, alert: "Not authorized." unless @note.user == current_user
   end
 
-
-  # List all notes for current user
   def index
     @notes = Note
                .active
@@ -25,7 +23,9 @@ class NotesController < ApplicationController
                .order(created_at: :desc)
   end
 
-
+  def archived
+    @notes = visible_notes(Note.archived)
+  end
 
   # Show favorite notes only
   def favorites
@@ -85,17 +85,17 @@ class NotesController < ApplicationController
   end
 
   def archive
-    @note = current_user.notes.find(params[:id])
-    @note.update(archived: true)
-
+    note = current_user.notes.find(params[:id])
+    note.update!(archived: true)
     redirect_to notes_path, notice: "Note archived"
   end
 
-
   def unarchive
-    @note.update(archived: false)
+    note = current_user.notes.find(params[:id])
+    note.update!(archived: false)
     redirect_to archived_notes_path, notice: "Note restored"
   end
+
 
 
   private
@@ -104,5 +104,16 @@ class NotesController < ApplicationController
   def set_note
     @note = current_user.notes.find_by(id: params[:id]) ||
             current_user.shared_notes.find(params[:id])
+  end
+
+  def visible_notes(scope)
+    scope
+      .left_joins(:note_shares)
+      .where(
+        "notes.user_id = :user_id OR note_shares.user_id = :user_id",
+        user_id: current_user.id
+      )
+      .distinct
+      .order(created_at: :desc)
   end
 end

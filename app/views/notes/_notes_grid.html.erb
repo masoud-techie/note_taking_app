@@ -39,47 +39,8 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-0 text-muted small d-flex justify-content-between align-items-center">
-          <small class="text-muted">
-            <% if note.updated_at > note.created_at %>
-              Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
-            <% else %>
-              Created on: <%= note.created_at.strftime("%b %d, %Y") %>
-            <% end %>
-          </small>
-          <div class="d-flex gap-3 pt-3">
-            <%= link_to edit_note_path(note),
-                        class: " text-dark text-decoration-none" do %>
-              <i class="bi bi-pencil"></i>
-            <% end %>
+        <%= render "notes/note_footer", note: note %>
 
-            <p type="" class="text-dark" data-bs-toggle="modal" data-bs-target="#shareModal">
-              <i class="bi bi-share"></i>
-            </p>
-
-            <% if note.user == current_user %>
-              <%= button_to note_path(note),
-                            method: :delete,
-                            class: "btn btn-link text-danger p-0" do %>
-                <i class="bi bi-trash"></i>
-              <% end %>
-            <% else %>
-              <%= button_to note_share_path(note),
-                            method: :delete,
-                            data: { turbo_confirm: "Remove this note from your notes?" },
-                            class: "btn btn-link text-danger p-0" do %>
-                <i class="bi bi-trash"></i>
-              <% end %>
-            <% end %>
-
-            <%= link_to archive_note_path(note),
-                        data: { turbo_method: :patch, turbo_confirm: "Archive this note?" },
-                        class: "btn btn-sm" do %>
-              <i class="bi bi-archive"></i>
-            <% end %>
-
-          </div>
-        </div>
       </div>
     <% end %>
   </div>

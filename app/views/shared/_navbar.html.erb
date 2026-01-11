@@ -28,10 +28,14 @@
           </li>
 
           <li class="nav-item">
+            <%= link_to "Archived", archived_notes_path, class: "nav-link" %>
+          </li>
+
+          <li class="nav-item">
             <%= button_to "Logout",
                           destroy_user_session_path,
                           method: :delete,
-                          class: "nav-link btn btn-link p-0" %>
+                          class: "nav-link btn btn-link" %>
 
           </li>
         <% else %>

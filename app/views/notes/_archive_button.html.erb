@@ -1,0 +1,14 @@
+<%= button_to(
+      note.archived? ? unarchive_note_path(note) : archive_note_path(note),
+      method: :patch,
+      class: "btn btn-link p-0 text-muted",
+      title: note.archived? ? "Unarchive" : "Archive"
+    ) do %>
+
+  <% if note.archived? %>
+    <i class="bi bi-archive-fill"></i>
+  <% else %>
+    <i class="bi bi-archive"></i>
+  <% end %>
+
+<% end %>

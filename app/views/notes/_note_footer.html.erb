@@ -1,0 +1,32 @@
+<div class="card-footer bg-transparent border-0 text-muted small d-flex justify-content-between align-items-center">
+  <small class="text-muted">
+    <% if note.updated_at > note.created_at %>
+      Updated: <%= note.updated_at.strftime("%b %d, %Y") %>
+    <% else %>
+      Created on: <%= note.created_at.strftime("%b %d, %Y") %>
+    <% end %>
+  </small>
+
+  <div class="d-flex gap-2 pt-3">
+    <!-- Edit button -->
+    <%= link_to edit_note_path(note),
+                class: "text-dark text-decoration-none" do %>
+      <i class="bi bi-pencil"></i>
+    <% end %>
+
+    <!-- Reminder button -->
+    <%= link_to "#",
+                class: "text-dark text-decoration-none" do %>
+      <i class="bi bi-bell"></i>
+    <% end %>
+
+    <!-- Share button (modal trigger) -->
+    <p class="text-muted" data-bs-toggle="modal" data-bs-target="#shareModal">
+      <i class="bi bi-share"></i>
+    </p>
+
+    <!-- Archive & Delete buttons -->
+    <%= render "notes/archive_button", note: note %>
+    <%= render "notes/delete_button", note: note %>
+  </div>
+</div>

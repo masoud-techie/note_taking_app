@@ -1,10 +1,10 @@
-<h2>Archived Notes</h2>
-<%= link_to unarchive_note_path(note),
-            method: :patch,
-            class: "btn btn-sm btn-outline-success",
-            title: "Restore" do %>
-  <i class="bi bi-arrow-counterclockwise"></i>
-<% end %>
+<div class="container-sm">
+  <h4 class="mt-3">Archived Notes</h4>
 
-<%= render partial: "notes/notes_grid",
-           locals: { notes: @notes, empty_message: "No archived notes." } %>
+  <%= render partial: "notes/notes_grid",
+             locals: {
+               notes: @notes,
+               empty_message: "No archived notes."
+             } %>
+</div>
+

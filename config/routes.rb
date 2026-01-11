@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     # Collection route for favorite notes
     collection do
       get :favorites
+      get :archived
     end
 
     member do
