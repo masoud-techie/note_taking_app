@@ -44,7 +44,7 @@ gem "image_processing", "~> 1.2"
 gem 'devise'
 
 group :development, :test do
-  gem "sqlite3", "~> 1.4"
+  gem "sqlite3", "~> 2.9"
 end
 
 group :production do
