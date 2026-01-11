@@ -1,6 +1,7 @@
 <%= button_to(
       note.archived? ? unarchive_note_path(note) : archive_note_path(note),
       method: :patch,
+      data: { turbo: false },
       class: "btn btn-link p-0 text-muted",
       title: note.archived? ? "Unarchive" : "Archive"
     ) do %>
